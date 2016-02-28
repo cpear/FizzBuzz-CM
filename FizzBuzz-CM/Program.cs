@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FizzBuzzLib;
 
 namespace FizzBuzz_CM
@@ -7,10 +8,18 @@ namespace FizzBuzz_CM
     {
         static void Main(string[] args)
         {
-            
+            var start = 1;
+            var end = 100;
 
-            
-            foreach (var word in buzzDecorator.GetNumberValuePairs())
+            var queue = new Queue<Tuple<int, string>>();
+            queue.Enqueue(Tuple.Create(3, "FiZZ"));
+            queue.Enqueue(Tuple.Create(5, "Buzz"));
+
+
+            var numberGerator = DecoratorFactory.GetDecoratedNumberGenerator(Tuple.Create(start,end), queue);
+
+           
+            foreach (var word in numberGerator.GetNumberValuePairs())
             {
                 Console.WriteLine(word.Value);
             }

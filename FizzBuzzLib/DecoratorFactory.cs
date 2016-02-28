@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FizzBuzzLib
 {
-    public class DecoratorFactory
+    public static class DecoratorFactory
     {
-        public IComponent GetDecoratedNumberGenerator(Tuple<int,int> startAndEndRange, Queue<Tuple<int,string>> numberWordPairs)
+        public static IComponent GetDecoratedNumberGenerator(Tuple<int,int> startAndEndRange, Queue<Tuple<int,string>> numberWordPairs)
         {
             var words = new WordNumberComponent(startAndEndRange.Item1, startAndEndRange.Item2);
-            var fizzDecorator = new WordNumberDecorator(words, 3, "Fizz");
-            var buzzDecorator = new WordNumberDecorator(fizzDecorator, 5, "Buzz");
 
-            return null;
+            IComponent currentComponent = words;
+
+            foreach (var numberWordPair in numberWordPairs)
+            {
+                currentComponent = new WordNumberDecorator(currentComponent, numberWordPair.Item1, numberWordPair.Item2);
+            }
+
+            return currentComponent;
         }
     }
 }
