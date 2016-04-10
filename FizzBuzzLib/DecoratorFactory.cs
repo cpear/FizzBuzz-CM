@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace FizzBuzzLib
 {
-    public static class DecoratorFactory
+    public class DecoratorFactory
     {
-        public static IComponent GetDecoratedNumberGenerator(Tuple<int,int> startAndEndRange, Queue<Tuple<int,string>> numberWordPairs)
+        public IComponent GetDecoratedNumberGenerator(Tuple<int,int> startAndEndRange, Queue<Tuple<int,string>> numberWordPairs)
         {
             var words = new WordNumberComponent(startAndEndRange.Item1, startAndEndRange.Item2);
 

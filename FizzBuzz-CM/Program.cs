@@ -15,9 +15,9 @@ namespace FizzBuzz_CM
             queue.Enqueue(Tuple.Create(3, "FiZZ"));
             queue.Enqueue(Tuple.Create(5, "Buzz"));
 
+            var facroty = new DecoratorFactory();
 
-            var numberGerator = DecoratorFactory.GetDecoratedNumberGenerator(Tuple.Create(start,end), queue);
-
+            var numberGerator = facroty.GetDecoratedNumberGenerator(Tuple.Create(start,end), queue);
            
             foreach (var word in numberGerator.GetNumberValuePairs())
             {
